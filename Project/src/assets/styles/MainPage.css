@@ -1,0 +1,104 @@
+/* General container */
+.main-page {
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eafaf1;
+  /* Soft mint background */
+  color: #3a6351;
+  /* Gentle mint green for text */
+}
+
+/* Page title */
+.main-page-title {
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: #2b7a62;
+  /* Soft, darker mint for title */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
+}
+
+/* Article container */
+.articles-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 80%;
+}
+
+/* Article card */
+.article-card {
+  width: 350px;
+  background: #f7fcf9;
+  /* Very light mint */
+  border: 1px solid #d0ebe4;
+  /* Light mint border */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Soft shadow */
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /* Deeper shadow on hover */
+}
+
+/* Article image */
+.article-image {
+  width: 50px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Article title */
+.article-title {
+  font-size: 1.4rem;
+  margin: 10px 0;
+  color: #3a6351;
+  /* Gentle mint green for titles */
+}
+
+/* View button */
+.view-button {
+  background-color: #5cb88a;
+  /* Mint green for button */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-button:hover {
+  background-color: #4a9e77;
+  /* Darker mint green for hover */
+  transform: scale(1.05);
+}
+
+.mainPageContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  margin: 0 6% 0 6%;
+  padding-top: 2%;
+}
+
+.imgContainer {
+  width: 320px;
+  height: 488px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

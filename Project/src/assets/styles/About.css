@@ -1,0 +1,70 @@
+/* General container styling */
+.main.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #3a6351;
+  /* Gentle mint green */
+}
+
+/* About section containers */
+.aboutContainer1,
+.aboutContainer2 {
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(47, 109, 66, 0.2);
+  /* Mint green shadow */
+  background-color: #f0fff4;
+  /* Very light mint */
+}
+
+/* Title styling */
+.title {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #2b7a62;
+  /* Soft, darker mint */
+  margin-bottom: 1.5rem;
+}
+
+/* Paragraph styling */
+p {
+  text-align: center;
+  margin: 1rem auto;
+  font-size: 2rem;
+  color: #3a6351;
+  /* Gentle mint green */
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  padding: 1rem;
+  background-color: #5cb88a;
+  /* Mint green */
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #4a9e77;
+  /* Slightly darker mint green */
+}
+
+/* General styling for sections */
+.section {
+  padding: 3rem;
+  margin: 2rem 0;
+  background-color: #eafaf1;
+  /* Soft mint background */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(47, 109, 66, 0.1);
+  /* Subtle mint shadow */
+}
