@@ -1,8 +1,9 @@
+//Project submitted by: Tanya Rotman, Alex Lapin. Class 48/6
+
 const express = require('express'); 
 const session = require('express-session'); 
-const mysql = require('mysql2'); 
-const bcrypt = require('bcrypt'); 
-const config = require("./config.js");
+const cors = require('cors');
+const config = require("./config/config.js");
 const db = require("./config/db");
 
 //Authentication middleware
@@ -12,6 +13,11 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
+
+app.use(cors({
+    origin: "http://localhost:3000", 
+    credentials: true,
+}));
 
 // Session setup
 app.use(session({
@@ -31,6 +37,11 @@ db.connect(err => {
 // Route to check if the server is running
 app.get("/", (req, res) => {
     res.send("Schedule & Logistics Backend Running");
+});
+
+//Route to check if the frontend is connected to backend
+app.get("/api", (req, res) => {
+    res.json({ message: "Hello from Backend!" });
 });
 
 // Routes
