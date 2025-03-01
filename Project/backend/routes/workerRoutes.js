@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 //Restriction to add workers - only allowed to admin position
-router.post("/", authMiddleware([4]), (req, res) => {
+router.post("/", authMiddleware([1]), (req, res) => {
     const { name, lastname, date_of_birth, certification, works_weekends, phone_number, email, position_id } = req.body;
 
     const sql = "INSERT INTO workers (name, lastname, date_of_birth, certification, works_weekends, phone_number, email, position_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
