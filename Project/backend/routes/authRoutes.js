@@ -12,6 +12,7 @@ router.post("/login", async (req, res) => {
         return res.status(400).json({ error: "Username and password are required." });
     }
 
+    const connection = db.getConnection();
     const sql = `
         SELECT users.id, users.username, users.password, workers.position_id, positions.role, workers.date_of_birth
         FROM users
@@ -20,7 +21,7 @@ router.post("/login", async (req, res) => {
         WHERE users.username = ?
     `;
 
-    db.query(sql, [username], async (err, result) => {
+    connection.query(sql, [username], async (err, result) => {
         if (err) {
             console.error("Database Error:", err);
             return res.status(500).json({ error: "Server error. Please try again later." });
@@ -72,11 +73,12 @@ router.post("/register", authMiddleware([1]), async (req, res) => {
         return res.status(400).json({ error: "All fields are required." });
     }
 
+    const connection = db.getConnection();
     const defaultPassword = date_of_birth.split("-").reverse().join("");
     const hashedPassword = await bcrypt.hash(defaultPassword, 10);
 
     const sql = "INSERT INTO users (username, password, worker_id) VALUES (?, ?, ?)";
-    db.query(sql, [gov_id, hashedPassword, worker_id], (err) => {
+    connection.query(sql, [gov_id, hashedPassword, worker_id], (err) => {
         if (err) {
             console.error("MySQL Error:", err);
             return res.status(500).json({ error: "Error registering user." });
@@ -88,9 +90,10 @@ router.post("/register", authMiddleware([1]), async (req, res) => {
 // Delete a User (Admins Only)
 router.delete("/users/:id", authMiddleware([1]), (req, res) => {
     const { id } = req.params;
+    const connection = db.getConnection();
 
     const sql = "DELETE FROM users WHERE id = ?";
-    db.query(sql, [id], (err, result) => {
+    connection.query(sql, [id], (err, result) => {
         if (err) return res.status(500).json({ error: "Error deleting user." });
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: "User not found." });
@@ -107,8 +110,10 @@ router.put("/change-password", (req, res) => {
         return res.status(400).json({ error: "All fields are required." });
     }
 
+    const connection = db.getConnection();
     const sql = "SELECT users.password, workers.date_of_birth FROM users JOIN workers ON users.worker_id = workers.id WHERE users.username = ?";
-    db.query(sql, [username], async (err, result) => {
+    
+    connection.query(sql, [username], async (err, result) => {
         if (err || result.length === 0) {
             return res.status(404).json({ error: "User not found." });
         }
@@ -123,9 +128,10 @@ router.put("/change-password", (req, res) => {
 
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         const updateSql = "UPDATE users SET password = ? WHERE username = ?";
-        db.query(updateSql, [hashedPassword, username], (updateErr) => {
+
+        connection.query(updateSql, [hashedPassword, username], (updateErr) => {
             if (updateErr) return res.status(500).json({ error: "Error updating password." });
-            
+
             req.session.destroy();
             res.json({ message: "Password changed successfully. Please log in again." });
         });
@@ -133,4 +139,5 @@ router.put("/change-password", (req, res) => {
 });
 
 module.exports = router;
+
 
