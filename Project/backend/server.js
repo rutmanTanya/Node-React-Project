@@ -54,9 +54,7 @@ const dutyGearRoutes = require("./routes/dutyGearRoutes");
 const gearStatusRoutes = require("./routes/gearStatusRoutes");
 
 app.use("/api/auth", authRoutes);
-app.use("/api/workers", authMiddleware([4]), workerRoutes);
-app.use("/api/duty-gear", authMiddleware([2, 4]), dutyGearRoutes); 
-app.use("/api/gear-status", authMiddleware([1, 2, 3, 4]), gearStatusRoutes);
+app.use("/api/workers", authMiddleware([1]), workerRoutes);
 
 // Start the server
 app.listen(PORT, () => {
