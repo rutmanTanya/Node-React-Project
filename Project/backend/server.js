@@ -2,7 +2,7 @@
 
 const express = require('express'); 
 const session = require('express-session'); 
-const cors = require('cors');
+const path = require("path");
 const config = require("./config/config.js");
 const db = require("./config/db");
 
@@ -14,10 +14,8 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 
-app.use(cors({
-    origin: "http://localhost:3000", 
-    credentials: true,
-}));
+// Serve frontend from backend
+app.use(express.static(path.join(__dirname, "../build")));
 
 // Session setup
 app.use(session({
@@ -42,6 +40,11 @@ app.get("/", (req, res) => {
 //Route to check if the frontend is connected to backend
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from Backend!" });
+});
+
+// All other routes → Serve React app
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 
 // Routes
