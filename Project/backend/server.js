@@ -50,8 +50,6 @@ app.get('*', (req, res) => {
 // Routes
 const authRoutes = require("./routes/authRoutes");
 const workerRoutes = require("./routes/workerRoutes");
-const dutyGearRoutes = require("./routes/dutyGearRoutes");
-const gearStatusRoutes = require("./routes/gearStatusRoutes");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/workers", authMiddleware([1]), workerRoutes);
