@@ -13,17 +13,6 @@ router.get("/", (req, res) => {
     });
 });
 
-// Add a new worker
-router.post("/", (req, res) => {
-    const { name, lastname, date_of_birth, certification, works_weekends, role } = req.body;
-    
-    const sql = "INSERT INTO workers (name, lastname, date_of_birth, certification, works_weekends, role) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(sql, [name, lastname, date_of_birth, certification, works_weekends, role], (err, result) => {
-        if (err) return res.status(500).json({ error: err });
-        res.status(201).json({ message: "Worker added!" });
-    });
-});
-
 //Restriction to add workers - only allowed to admin position
 router.post("/", authMiddleware([4]), (req, res) => {
     const { name, lastname, date_of_birth, certification, works_weekends, phone_number, email, position_id } = req.body;
